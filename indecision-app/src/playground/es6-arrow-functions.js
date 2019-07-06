@@ -1,5 +1,3 @@
-"use strict";
-
 // const square = function (x){
 //   return x*x;
 // };
@@ -38,16 +36,12 @@
 // }
 // user.printPlacesLived()
 
-var multiplyer = {
+const multiplyer = {
   numbers: [10, 20, 30],
   multiplyBy: 3,
-  multiply: function multiply() {
-    var _this = this;
-
-    return this.numbers.map(function (multiple) {
-      return multiple * _this.multiplyBy;
-    });
-  }
-};
+  multiply() {
+    return this.numbers.map((multiple) => multiple * this.multiplyBy);
+    }
+  };
 
 console.log(multiplyer.multiply());
