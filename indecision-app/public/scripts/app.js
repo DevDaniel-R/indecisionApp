@@ -1,53 +1,121 @@
-"use strict";
+'use strict';
 
-// const square = function (x){
-//   return x*x;
-// };
+console.log('App.js is running');
 
-// // const squareArrow = (x) => {
-// //   return x*x ;
-// // }
-
-// const squareArrow = (x) => x*x; 
-
-// console.log(squareArrow(12));
-
-// const addition = (a,x) => {
-//   return a+x
-// }
-// console.log(addition(3,5));
-
-// const fullName = 'Daniel Rodriguez';
-
-// const getFirstName = (x) => fullName.split(' ')[0];
-
-// console.log(getFirstName(fullName));
-
-// const user = {
-// name: 'Daniel',
-// cities: ['lamont', 'bakersfield', 'roanoke'],
-// printPlacesLived: function (city) {
-//   console.log(user.name);
-//   console.log(user.cities);
-
-//   this.cities.forEach(function (city) {
-//     console.log(this.name += ' has lived in ' + city);
-//   })
-// }
-
-// }
-// user.printPlacesLived()
-
-var multiplyer = {
-  numbers: [10, 20, 30],
-  multiplyBy: 3,
-  multiply: function multiply() {
-    var _this = this;
-
-    return this.numbers.map(function (multiple) {
-      return multiple * _this.multiplyBy;
-    });
-  }
+//JSX - JavaScript XML
+var app = {
+  title: 'Indecision App',
+  subTitle: 'my little pony 2',
+  options: ['one', 'Two']
 };
 
-console.log(multiplyer.multiply());
+var template = React.createElement(
+  'div',
+  null,
+  React.createElement(
+    'h1',
+    null,
+    app.title
+  ),
+  app.subTitle && React.createElement(
+    'p',
+    null,
+    ' ',
+    app.subTitle,
+    ' '
+  ),
+  React.createElement(
+    'p',
+    null,
+    app.options.length >= 0 ? 'here are your options' : 'no options'
+  ),
+  React.createElement(
+    'ol',
+    null,
+    React.createElement(
+      'li',
+      null,
+      'item one'
+    ),
+    React.createElement(
+      'li',
+      null,
+      'item one'
+    ),
+    React.createElement(
+      'li',
+      null,
+      'item three'
+    )
+  )
+);
+
+var count = 0;
+var addOne = function addOne() {
+  count++;
+  renderCounterApp();
+};
+var minusOne = function minusOne() {
+  count--;
+  console.log('minusOne');
+  renderCounterApp();
+};
+var reset = function reset() {
+  count = 0;
+  console.log('reset');
+  renderCounterApp();
+};
+
+//challenge
+//make button '-1' - setup minus one function and register - log "minusOne"
+//make reset button "reset" - setup reset fuction - log "reset"
+
+// let counter = 0
+
+// const minus = () => {
+//   console.log('minusOne')
+// }
+// const reset = () => {
+//   console.log("reset")
+// }
+// const templateThree = (
+// <div>
+// <h1>Take Away</h1>
+// <button onClick={minus} >-1</button>
+// <h2>New</h2>
+// <button onClick={reset}>reset</button>
+// </div>
+// );
+
+var appRoot = document.getElementById('app');
+
+var renderCounterApp = function renderCounterApp() {
+  var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      'Count: ',
+      count
+    ),
+    React.createElement(
+      'button',
+      { onClick: addOne },
+      '+1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: minusOne },
+      '-1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: reset },
+      'reset'
+    )
+  );
+
+  ReactDOM.render(templateTwo, appRoot);
+};
+renderCounterApp();

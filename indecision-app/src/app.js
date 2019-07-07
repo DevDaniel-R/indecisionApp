@@ -20,29 +20,57 @@ const template = (
   </div>
 );
 
-const user = {
-  name: 'Daniel Rodriguez',
-  Age: 25,
-  location: 'Texas'
+let count = 0;
+const addOne = () => {
+  count ++;
+  renderCounterApp();
+};
+const minusOne = () => {
+  count --;
+  console.log('minusOne')
+  renderCounterApp();
+};
+const reset = () => {
+  count = 0;
+  console.log('reset')
+  renderCounterApp();
 };
 
+//challenge
+//make button '-1' - setup minus one function and register - log "minusOne"
+//make reset button "reset" - setup reset fuction - log "reset"
 
-function getLocation(location){
-  if (location){
-    return <p>Location: {location}</p>;
-  }
-}
+// let counter = 0
 
-const templateTwo = (
-  <div>
-  <h1>{user.name ? user.name : 'Anonymous'}</h1>
-  {(user.Age && user.Age >= 18) && 
-  <p>Age:{user.Age}</p>}
+// const minus = () => {
+//   console.log('minusOne')
+// }
+// const reset = () => {
+//   console.log("reset")
+// }
+// const templateThree = (
+// <div>
+// <h1>Take Away</h1>
+// <button onClick={minus} >-1</button>
+// <h2>New</h2>
+// <button onClick={reset}>reset</button>
+// </div>
+// );
 
-  {getLocation(user.location)}
-  </div>
-);
+const appRoot = document.getElementById('app');
 
-var appRoot = document.getElementById('app');
 
-ReactDOM.render(template,appRoot);
+const renderCounterApp = () => {
+  const templateTwo = (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <button onClick={minusOne}>-1</button>
+      <button onClick={reset}>reset</button>
+    </div>
+  );
+
+
+ReactDOM.render(templateTwo,appRoot);
+  };
+  renderCounterApp();
