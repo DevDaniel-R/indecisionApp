@@ -4,14 +4,33 @@ class Person {
     this.age = age;
   }
   getGreeting() {
-return `${this.name} is years old.`
+return `Hi. I am ${this.name} is years old.`
   }
   getDescription(){
-    return `${this.name} is ${this.age} years old`
+    return `${this.name} is ${this.age} year(s) old`;
   }
 }
-const me = new Person ('Daniel Rodriguez', 21);
+
+class Student extends Person {
+  constructor(name, age, major){
+    super(name, age);
+    this.major = major;
+  }
+  hasMajor() {
+    return !!this.major;
+  }
+  getDescription(){
+    let description = super.getDescription();
+
+    if (this.hasMajor()) {
+      description += ` Their major is ${this.mayor}.`
+    }
+    return description;
+  }
+}
+
+const me = new Student ('Daniel Rodriguez', 21);
   console.log(me.getGreeting());
 
-const other = new Person ();
+const other = new Student ();
   console.log(other.getGreeting());
