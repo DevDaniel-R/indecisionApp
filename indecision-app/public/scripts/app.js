@@ -10,9 +10,47 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// class Person {
+//   constructor (name = 'no name joe', age = 0) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   getGreeting() {
+// return `Hi. I am ${this.name} is years old.`
+//   }
+//   getDescription(){
+//     return `${this.name} is ${this.age} year(s) old`;
+//   }
+// }
+
+// class Student extends Person {
+//   constructor(name, age, major){
+//     super(name, age);
+//     this.major = major;
+//   }
+//   hasMajor() {
+//     return !!this.major;
+//   }
+//   getDescription(){
+//     let description = super.getDescription();
+
+//     if (this.hasMajor()) {
+//       description += ` Their major is ${this.mayor}.`
+//     }
+//     return description;
+//   }
+// }
+
+// const me = new Student ('Daniel Rodriguez', 21);
+//   console.log(me.getGreeting());
+
+// const other = new Student ();
+//   console.log(other.getGreeting());
+
+
 var Person = function () {
   function Person() {
-    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'no name joe';
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anonymous';
     var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
     _classCallCheck(this, Person);
@@ -24,12 +62,12 @@ var Person = function () {
   _createClass(Person, [{
     key: 'getGreeting',
     value: function getGreeting() {
-      return 'Hi. I am ' + this.name + ' is years old.';
+      return 'Hi. I am ' + this.name + '!';
     }
   }, {
     key: 'getDescription',
     value: function getDescription() {
-      return this.name + ' is ' + this.age + ' year(s) old';
+      return this.name + ' is ' + this.age + ' year(s) old.';
     }
   }]);
 
@@ -59,7 +97,7 @@ var Student = function (_Person) {
       var description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'getDescription', this).call(this);
 
       if (this.hasMajor()) {
-        description += ' Their major is ' + this.mayor + '.';
+        description += ' Their major is ' + this.major() + '.';
       }
       return description;
     }
@@ -68,8 +106,46 @@ var Student = function (_Person) {
   return Student;
 }(Person);
 
-var me = new Student('Daniel Rodriguez', 21);
+var Traveler = function (_Person2) {
+  _inherits(Traveler, _Person2);
+
+  function Traveler(name, age, homeLocation) {
+    _classCallCheck(this, Traveler);
+
+    var _this2 = _possibleConstructorReturn(this, (Traveler.__proto__ || Object.getPrototypeOf(Traveler)).call(this, name, age));
+
+    _this2.homeLocation = homeLocation;
+    return _this2;
+  }
+  // hasLocation(){
+  //   return !!this.homeLocation;
+  // }
+
+
+  _createClass(Traveler, [{
+    key: 'getGreeting',
+    value: function getGreeting() {
+      var greeting = _get(Traveler.prototype.__proto__ || Object.getPrototypeOf(Traveler.prototype), 'getGreeting', this).call(this);
+
+      if (this.homeLocation) {
+        greeting += ' I am visting from ' + this.homeLocation + '.';
+      }
+      return greeting;
+    }
+  }]);
+
+  return Traveler;
+}(Person);
+// 1. hi i am andrew Med  i am visiting from philadelphia. 
+// 2. hi i am andrew Med.
+
+
+var me = new Traveler('Andrew Mead', 26, 'Philly');
 console.log(me.getGreeting());
 
-var other = new Student();
+var other = new Traveler();
 console.log(other.getGreeting());
+
+// Traveler -> Person (new class extends persons class)
+// add support for homelocation (much like major is the third argument for student. home location will be an argument)
+// override getGreeting
